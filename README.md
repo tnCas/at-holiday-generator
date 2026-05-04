@@ -1,8 +1,18 @@
-# at-holiday-calendar
-R functions for calculating movable Austrian public holidays and generating custom business calendars for time-series analysis.
-# AT Holiday Calendar
+A specialized R utility designed to programmatically identify Austrian public holidays. This is particularly useful for analysts requiring high-accuracy date arithmetic for time-series forecasting.
 
-This repository provides a programmatic approach to identifying Austrian public holidays, specifically addressing movable feasts based on the Computus (Easter calculation).
+## Core Functionality
+The script addresses the complexity of the **Computus** (Easter calculation) to determine movable feasts:
+* **Easter Monday**
+* **Ascension** (Easter + 39 days)
+* **Whit Monday** (Easter + 50 days)
+* **Corpus Christi** (Easter + 60 days)
+
+It also includes all fixed national holidays and initializes a `bizdays` calendar object.
+
+## Setup
+Ensure the following packages are installed:
+```R
+install.packages(c("timeDate", "bizdays"))
 
 ## Logic Overview
 The script calculates the following dates relative to the Western Easter Sunday:
@@ -12,4 +22,7 @@ The script calculates the following dates relative to the Western Easter Sunday:
 * **Corpus Christi**: Easter + 60 days
 
 ## Usage
-The core logic utilizes the `timeDate` package for the base Easter calculation and the `bizdays` package for custom calendar generation. This is particularly useful for energy analysts performing day-ahead market modeling or load forecasting where holiday effects are significant.
+source("at_holidays.R")
+
+# Example: Calculate working days between two dates
+bizdays("2026-05-01", "2026-06-01", "Austria")
